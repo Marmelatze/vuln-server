@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.5//EN"
+        "http://struts.apache.org/dtds/struts-2.5.dtd">
+
+<struts>
+
+    <constant name="struts.devMode" value="true" />
+
+    <package name="basicstruts2" extends="struts-default">
+        <interceptors>
+            <interceptor name="deserialize"
+                         class="com.example.serialization.interceptors.DeserializeInterceptor"></interceptor>
+            <interceptor-stack name="deserializeStack">
+                <interceptor-ref name="deserialize"></interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <action name="index">
+            <result>/index.jsp</result>
+        </action>
+        <action name="hello" class="com.example.serialization.action.HelloWorldAction" method="execute">
+            <result name="success">/HelloWorld.jsp</result>
+        </action>
+        <action name="login" class="com.example.serialization.action.LoginAction" method="execute">
+            <result name="input">/login.jsp</result>
+            <result name="success">/index.jsp</result>
+        </action>
+        <action name="login2" class="com.example.serialization.action.Login2Action" method="execute">
+            <result name="input">/login.jsp</result>
+            <result name="success">/index.jsp</result>
+        </action>
+
+    </package>
+
+</struts>
+
